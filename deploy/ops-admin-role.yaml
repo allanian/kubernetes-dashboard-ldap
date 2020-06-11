@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ops-admin
+  namespace: default
+  labels:
+    kubernetes.io/cluster-service: "true"
+    addonmanager.kubernetes.io/mode: Reconcile
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: ops-role
+rules:
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get", "list", "watch"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: ops-listnamespace
+roleRef: #引用的角色
+  kind: ClusterRole
+  name: ops-role
+  apiGroup: rbac.authorization.k8s.io
+subjects: #主体
+- kind: ServiceAccount
+  name: ops-admin
+  namespace: default
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: ops-ci-admin
+  namespace: ops-ci
+roleRef: #引用的角色
+  kind: ClusterRole
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
+subjects: #主体
+- kind: ServiceAccount
+  name: ops-admin
+  namespace: default
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: ops-qa-admin
+  namespace: ops-qa
+roleRef: #引用的角色
+  kind: ClusterRole
+  name: admin
+  apiGroup: rbac.authorization.k8s.io
+subjects: #主体
+- kind: ServiceAccount
+  name: ops-admin
+  namespace: default
