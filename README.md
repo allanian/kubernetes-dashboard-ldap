@@ -1,8 +1,8 @@
 <p align="center">
     <a href="javascript:;" target="_blank"><img src="http://www.jiunile.com/tmp/mutiboard.png"></a>
 </p>
-# 工具由来
 
+# 工具由来
 
 # 如何打造
 
@@ -16,5 +16,5 @@
 
 |支付宝|微信|群二维码|
 |:-----:|:-----:|:-----:|
-|![alipay](https://icyxp/kubernetes-dashboard-ldap/raw/master/assets/donate/alipay.png)|![weixin](https://icyxp/kubernetes-dashboard-ldap/raw/master/assets/donate/wxpay.png)|![weixin 群](https://icyxp/kubernetes-dashboard-ldap/raw/master/assets/donate/weixin.jpeg)|
+|![alipay](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/alipay.png)|![weixin](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/wxpay.png)|![weixin 群](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/weixin.jpeg)|
 
