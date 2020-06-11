@@ -253,9 +253,7 @@ clusters:
 ## 访问
 http://{nodeip}:31000
 
-<video id="video" controls="" preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png">
-    <source id="webm" src="https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/video/intro.webm" type="video/webm">
-</video>
+[![mutiboard-ldap](http://img.youtube.com/vi/ILiviSLbSq8/0.jpg)](http://www.youtube.com/watch?v=ILiviSLbSq8 "kubernetes muti dashboard ldap login")
 
 # 捐助
 如果你愿意.
