@@ -85,7 +85,7 @@ spec:
             secretName: k8s-mutiboard-ldap-cert
         - name: cluster-volume
           configMap:
-            name: k8s-cluster
+            name: mutiboard-ldap
             items:
               - key: config
                 path: config.yaml
