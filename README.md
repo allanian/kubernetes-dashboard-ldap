@@ -253,10 +253,9 @@ clusters:
 ## 访问
 http://{nodeip}:31000
 
-视频：
 [![mutiboard-ldap](http://img.youtube.com/vi/ILiviSLbSq8/0.jpg)](http://www.youtube.com/watch?v=ILiviSLbSq8 "kubernetes muti dashboard ldap login")
 
-视频地址: [https://github.com/icyxp/kubernetes-dashboard-ldap/raw/master/assets/video/intro.webm](https://github.com/icyxp/kubernetes-dashboard-ldap/raw/master/assets/video/intro.webm)
+视频下载地址: [https://github.com/icyxp/kubernetes-dashboard-ldap/raw/master/assets/video/intro.webm](https://github.com/icyxp/kubernetes-dashboard-ldap/raw/master/assets/video/intro.webm)
 
 # 捐助
 如果你愿意.
