@@ -5,7 +5,7 @@ data:
       addr: ldap://192.168.3.81:389
       adminUser: xxxxx
       adminPwd: xxxxxx
-      baseDN: dc=corp,dc=patsnap,dc=com
+      baseDN: dc=corp,dc=xxx,dc=com
       filter: (&(objectClass=person)(sAMAccountName=%s))
       attributes: user_dn
       orgUnitName: OU=
@@ -21,24 +21,24 @@ data:
         ns: default
     clusters:
       local:
-        apiServer: apiserver.k8s.zhihuiya.com
-        port: 6443
-        dashboard: dashboard-k8s.zhihuiya.com
+        apiServer: apiserver-dev.jiunile.com
+        port: 443
+        dashboard: dashboard-dev.jiunile.com
         desc: Dev Cluster
       cnrelease:
-        apiServer: A85E14E5EB6C3A4E55AFB5F29D72D4A1.gr7.cn-northwest-1.eks.amazonaws.com.cn
+        apiServer: apiserver-cn-release.jiunile.com
         port: 443
-        dashboard: release-kuboard.patsnap.info
+        dashboard: dashboard-cn-release.jiunile.com
         desc: CN Release Cluster
       usrelease:
-        apiServer: DF8BDF8E8F3416AD34716948E165479B.gr7.us-east-1.eks.amazonaws.com
+        apiServer: apiserver-us-release.jiunile.com
         port: 443
-        dashboard: release-us-kuboard.patsnap.info
+        dashboard: dashboard-us-release.jiunile.com
         desc: US Release Cluster
       euprod:
-        apiServer: 0DC0240DBEA749035EBD36AB8F60108D.gr7.eu-central-1.eks.amazonaws.com
+        apiServer: apiserver-eu-prod.jiunile.com
         port: 443
-        dashboard: dashboard-k8s-eu.patsnap.io
+        dashboard: dashboard-eu-prod.jiunile.com
         desc: EU Prod Cluster
 kind: ConfigMap
 metadata:
