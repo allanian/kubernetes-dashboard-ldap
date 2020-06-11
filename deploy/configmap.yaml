@@ -1,0 +1,46 @@
+apiVersion: v1
+data:
+  config: |
+    ldap:
+      addr: ldap://192.168.3.81:389
+      adminUser: xxxxx
+      adminPwd: xxxxxx
+      baseDN: dc=corp,dc=patsnap,dc=com
+      filter: (&(objectClass=person)(sAMAccountName=%s))
+      attributes: user_dn
+      orgUnitName: OU=
+    rbac:
+      DevOps team:
+        sa: admin
+        ns: kube-system
+      wangweilei:
+        sa: wwl-admin
+        ns: default
+      xupeng:
+        sa: search-admin
+        ns: default
+    clusters:
+      local:
+        apiServer: apiserver.k8s.zhihuiya.com
+        port: 6443
+        dashboard: dashboard-k8s.zhihuiya.com
+        desc: Dev Cluster
+      cnrelease:
+        apiServer: A85E14E5EB6C3A4E55AFB5F29D72D4A1.gr7.cn-northwest-1.eks.amazonaws.com.cn
+        port: 443
+        dashboard: release-kuboard.patsnap.info
+        desc: CN Release Cluster
+      usrelease:
+        apiServer: DF8BDF8E8F3416AD34716948E165479B.gr7.us-east-1.eks.amazonaws.com
+        port: 443
+        dashboard: release-us-kuboard.patsnap.info
+        desc: US Release Cluster
+      euprod:
+        apiServer: 0DC0240DBEA749035EBD36AB8F60108D.gr7.eu-central-1.eks.amazonaws.com
+        port: 443
+        dashboard: dashboard-k8s-eu.patsnap.io
+        desc: EU Prod Cluster
+kind: ConfigMap
+metadata:
+  name: mutiboard-ldap
+  namespace: kube-system

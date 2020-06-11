@@ -1,0 +1,106 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-mutiboard-ldap
+  namespace: kube-system
+  annotations:
+    name: k8s-mutiboard-ldap
+    ngress: "true"
+  labels:
+    name: k8s-mutiboard-ldap
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      name: k8s-mutiboard-ldap
+  template:
+    metadata:
+      labels:
+        name: k8s-mutiboard-ldap
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: name
+                      operator: In
+                      values:
+                        - k8s-mutiboard-ldap
+                topologyKey: kubernetes.io/hostname
+              weight: 100
+      containers:
+        - name: k8s-mutiboard-ldap
+          image: icyboy/k8s-mutiboard-ldap:1.0.0
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 30"]
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            successThreshold: 1
+            tcpSocket:
+              port: 80
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 5
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            tcpSocket:
+              port: 80
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "1"
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 10Mi
+          volumeMounts:
+            - name: secret-volume
+              mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+              readOnly: true
+            - name: cluster-volume
+              mountPath: /opt
+              readOnly: true
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: k8s-mutiboard-ldap-cert
+        - name: cluster-volume
+          configMap:
+            name: k8s-cluster
+            items:
+              - key: config
+                path: config.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-mutiboard-ldap
+  namespace: kube-system
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      nodePort: 31000
+  selector:
+    name: k8s-mutiboard-ldap

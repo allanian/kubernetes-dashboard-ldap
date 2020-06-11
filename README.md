@@ -30,8 +30,8 @@ Dashboard LDAP集成方案：
 3. 各集群中有对应的 `service account` 可进行映射，如需对不同用户和组需要有不同的操作权限，则对sa进行rbac授权即可，下面会详细说明。
 4. 此工具需要操作各集群的api，故需要获取每个集群的 `apiserver地址`、`ca.crt` 以及 `token` 进行配置，至于每个集群的 `ca.crt` 和 `token` 如果获取，后面会进行说明
 
-## 如何ca.crt及token获取
-此工具需要操作每个集群的api来获取对应的sa以及token，故需要有对各集群操作的权限。那如何在各集群生成对应的ca证书及token呢？答案就是创建一个sa并给予一定的权限。
+## 如何获取 ca.crt 及 token
+此工具需要操作每个集群的api来获取对应的 sa 以及 token，故需要有对各集群操作的权限。那如何在各集群生成对应的 ca证书 及 token 呢？答案就是创建一个 sa 并给予一定的权限。
 
 在每个k8s集群中执行如下yaml文件:
 ```yaml
@@ -76,9 +76,9 @@ rules:
   - list
   - watch
 ```
-此yaml文件的含义：创建一个名为`mutiboard-ldap`的sa，并且给予`serviceaccounts`和`secrets`的get和list的权限。
+此yaml文件的含义：创建一个名为`mutiboard-ldap`的 sa，并且给予`serviceaccounts`和`secrets`的get和list的权限。
 
-获取 `mutiboard-ldap` 的ca.crt：
+获取 `mutiboard-ldap` 的 ca.crt：
 ```bash
 (⎈|aws-local:default)❯ echo $(kubectl get secret $(kubectl get secret | grep mutiboard-ldap | awk '{print $1}') -o go-template='{{index .data "ca.crt"}}') | base64 -d
 
@@ -101,7 +101,7 @@ JCWpOgN3T4Fw7E359CBQxnSHPasmZ5VBoyIk/HUU6ZlMK6Xo6JlbS7ZvVl4=
 -----END CERTIFICATE-----
 ```
 
-获取 `mutiboard-ldap` 的token：
+获取 `mutiboard-ldap` 的 token：
 ```bash
 (⎈|aws-local:default)❯ echo $(kubectl get secret $(kubectl get secret | grep mutiboard-ldap | awk '{print $1}') -o go-template='{{.data.token}}') | base64 -d
 
@@ -109,7 +109,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiw
 ```
 至此，各集群的 `ca.crt` 和 `token` 都已获取，下面会告知如何进行配置使用这些 `ca.crt` 和 `token`
 
-## SA RBAC讲解
+## SA RBAC列子
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -172,9 +172,88 @@ subjects: #主体
 ```
 这段YAML的意思为：创建了一个ops-admin的sa，并为这个sa赋予了两个命名空间(ops-ci、ops-qa) admin 的权限。
 
-具体想了解更多rbac相关的说明，可参考：[https://www.cnblogs.com/wlbl/p/10694364.html#rbac%E7%9A%84%E4%B8%89%E7%A7%8D%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE](https://www.cnblogs.com/wlbl/p/10694364.html#rbac%E7%9A%84%E4%B8%89%E7%A7%8D%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE)
+具体想了解更多rbac相关的说明，可参考：[https://www.cnblogs.com/wlbl/p/10694364.html](https://www.cnblogs.com/wlbl/p/10694364.html)
 
-## 配置说明
+## ldap说明
+我司`ldap`目录规则如下：
+```
+|--域
+|--|---公司
+|--|----|----分公司
+|--|----|-----|----部门
+|--|----|-----|-----|-----用户
+```
+
+对应的`Distinguished Name`显示如下：
+```
+CN=Peng Xu,OU=部门,OU=分公司,OU=公司,DC=corp,DC=xxx,DC=com
+```
+这里我会获取第一个`OU`作为`group`，如果你的需求和我不一样，可以给我提 issue 进行适配
+
+ldap 详细说明请参考：[https://blog.poychang.net/ldap-introduction](https://blog.poychang.net/ldap-introduction)
+
+## configmap.yaml 配置说明
+```yaml
+ldap:
+  addr: ldap://192.168.3.81:389
+  adminUser: xxxxx
+  adminPwd: xxxxxx
+  baseDN: dc=corp,dc=patsnap,dc=com
+  filter: (&(objectClass=person)(sAMAccountName=%s))
+  attributes: user_dn
+  orgUnitName: OU=
+#全局用户/用户组与SA的映射
+rbac:
+  DevOps team:
+    sa: ops-admin
+    ns: kube-system
+  xupeng:
+    sa: inno-admin
+    ns: default
+clusters:
+  #集群别名，在登录下拉框中显示的key，这个别名需要和secret.sh中的ca.crt和token的键名一一对应
+  local:
+    #apiserver地址，能够被当前工具访问到
+    apiServer: apiserver-dev.jiunile.com
+    port: 6443
+    #kubernetes dashboard地址，能够被当前工具访问到
+    dashboard: dashboard-dev.jiunile.com
+    #集群说明，在登录下拉框中显示的名称
+    desc: Dev Cluster
+    #针对单独集群细分
+    #rbac:
+    #  DevOps team:
+    #    sa: admin
+    #    ns: kube-system
+    #  xupeng:
+    #    sa: ops-admin
+    #    ns: default
+  cnrelease:
+    apiServer: apiserver-cn-release.jiunile.com
+    port: 443
+    dashboard: dashboard-cn-release.jiunile.com
+    desc: CN Release Cluster
+  usrelease:
+    apiServer: apiserver-us-release.jiunile.com
+    port: 443
+    dashboard: dashboard-us-release.jiunile.com
+    desc: US Release Cluster
+  euprod:
+    apiServer: apiserver-eu-prod.jiunile.com
+    port: 443
+    dashboard: dashboard-eu-prod.jiunile.com
+    desc: EU Prod Cluster
+``` 
+## 部署
+1. 修改并部署`deploy/configmap.yaml`
+2. 将各集群获取的 `ca.crt` 和 `token` 写入到对应的deploy/token下
+3. 执行 deploy 下的 secret.sh 脚本 `sh deploy/secret.sh`
+    > 注意: secret.sh 中的`xx_token/xxx_ca.crt`中的 `xx` 对应于`configmap.yaml` 中的**集群别名，必须要一一对应**
+    
+4. 部署`deploy/deployment.yaml`
+
+## 访问
+http://{nodeip}:31000
 
 # 捐助
 如果你愿意.
