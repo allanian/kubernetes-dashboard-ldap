@@ -253,6 +253,8 @@ clusters:
 ## 访问
 http://{nodeip}:31000
 
+<source id="webm" src="https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/video/intro.webm" type="video/webm">
+
 # 捐助
 如果你愿意.
 
