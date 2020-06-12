@@ -175,7 +175,7 @@ The meaning of this YAML is: create an ops-admin sa, and give this sa two namesp
 
 For more information about rbac, please refer to：[https://www.cnblogs.com/wlbl/p/10694364.html](https://www.cnblogs.com/wlbl/p/10694364.html)
 
-## ldap description
+## LDAP description
 Our `ldap` directory rules are as follows:
 ```
 |--domain
@@ -193,7 +193,7 @@ Here I will get the first `OU` as a `group`, if your needs are different from mi
 
 For details, please refer to：[https://blog.poychang.net/ldap-introduction](https://blog.poychang.net/ldap-introduction)
 
-## configmap.yaml configuration instructions
+## Configmap.yaml configuration instructions
 ```yaml
 ldap:
   addr: ldap://192.168.3.81:389
@@ -245,7 +245,7 @@ clusters:
     dashboard: dashboard-eu-prod.jiunile.com
     desc: EU Prod Cluster
 ``` 
-## deployment
+## Deploy
 1. Modify and deploy `deploy/configmap.yaml`
 2. Write the `ca.crt` and `token` obtained by each cluster to the corresponding deploy/token
 3. Execute the secret.sh script under deploy `sh deploy/secret.sh`
@@ -253,14 +253,14 @@ clusters:
     
 1. deploy `deploy/deployment.yaml`
 
-## visit
+## Visit
 http://{nodeip}:31000
 
 [![mutiboard-ldap](http://img.youtube.com/vi/ILiviSLbSq8/0.jpg)](http://www.youtube.com/watch?v=ILiviSLbSq8 "kubernetes muti dashboard ldap login")
 
 Video download address: [https://github.com/icyxp/kubernetes-dashboard-ldap/raw/master/assets/video/intro.webm](https://github.com/icyxp/kubernetes-dashboard-ldap/raw/master/assets/video/intro.webm)
 
-# donation
+# Donation
 if you are willing to.
 
 |Alipay|Wxpay|Wechat group|
