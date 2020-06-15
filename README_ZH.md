@@ -19,7 +19,7 @@ Dashboard LDAP集成方案：
 
 是不是非常的简单！！！
 
-实现技术栈：golang(gin、client-go、viper、ldap) + Kubernetes Dashboard
+实现技术栈：golang(gin、client-go、viper、ldap) + [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) / [Kubaord](https://kuboard.cn/install/install-dashboard.html)
 # 如何部署
 ## 前提条件
 在使用此工具前，需要有以下一些条件约束：
@@ -229,18 +229,24 @@ clusters:
   cnrelease:
     apiServer: apiserver-cn-release.jiunile.com
     port: 443
-    dashboard: dashboard-cn-release.jiunile.com
+    dashboard: https://dashboard-cn-release.jiunile.com
     desc: CN Release Cluster
   usrelease:
     apiServer: apiserver-us-release.jiunile.com
     port: 443
-    dashboard: dashboard-us-release.jiunile.com
+    dashboard: https://dashboard-us-release.jiunile.com
     desc: US Release Cluster
   euprod:
     apiServer: apiserver-eu-prod.jiunile.com
     port: 443
-    dashboard: dashboard-eu-prod.jiunile.com
+    dashboard: https://dashboard-eu-prod.jiunile.com
     desc: EU Prod Cluster
+  dataprod:
+    apiServer: apiserver-data-prod.jiunile.com
+    port: 443
+    dashboard: http://kuboard-data-prod.jiunile.com
+    desc: DATA Prod Cluster
+    type: kuboard
 ``` 
 ## 部署
 1. 修改并部署`deploy/configmap.yaml`

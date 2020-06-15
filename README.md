@@ -20,7 +20,7 @@ After logging in, you can complete a reverse proxy service.
 
 Is it very simple! ! !
 
-Implementation Technology Stack：golang(gin、client-go、viper、ldap) + Kubernetes Dashboard
+Implementation Technology Stack：golang(gin、client-go、viper、ldap) + [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) / [Kubaord](https://kuboard.cn/install/install-dashboard.html)
 
 # How to deploy
 ## Prerequisites
@@ -232,18 +232,24 @@ clusters:
   cnrelease:
     apiServer: apiserver-cn-release.jiunile.com
     port: 443
-    dashboard: dashboard-cn-release.jiunile.com
+    dashboard: https://dashboard-cn-release.jiunile.com
     desc: CN Release Cluster
   usrelease:
     apiServer: apiserver-us-release.jiunile.com
     port: 443
-    dashboard: dashboard-us-release.jiunile.com
+    dashboard: https://dashboard-us-release.jiunile.com
     desc: US Release Cluster
   euprod:
     apiServer: apiserver-eu-prod.jiunile.com
     port: 443
-    dashboard: dashboard-eu-prod.jiunile.com
+    dashboard: https://dashboard-eu-prod.jiunile.com
     desc: EU Prod Cluster
+  dataprod:
+    apiServer: apiserver-data-prod.jiunile.com
+    port: 443
+    dashboard: http://kuboard-data-prod.jiunile.com
+    desc: DATA Prod Cluster
+    type: kuboard
 ``` 
 ## Deploy
 1. Modify and deploy `deploy/configmap.yaml`

@@ -38,7 +38,7 @@ spec:
               weight: 100
       containers:
         - name: k8s-mutiboard-ldap
-          image: icyboy/k8s-mutiboard-ldap:1.0.0
+          image: icyboy/k8s-mutiboard-ldap:1.1.0
           lifecycle:
             preStop:
               exec:
