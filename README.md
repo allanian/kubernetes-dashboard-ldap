@@ -20,7 +20,7 @@ After logging in, you can complete a reverse proxy service.
 
 Is it very simple! ! !
 
-Implementation Technology Stack：golang(gin、client-go、viper、ldap) + [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) / [Kubaord](https://kuboard.cn/install/install-dashboard.html)
+Implementation Technology Stack：golang(gin、client-go、viper、ldap) + [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) / [Kuboard](https://kuboard.cn/install/install-dashboard.html)
 
 # How to deploy
 ## Prerequisites

@@ -19,7 +19,7 @@ Dashboard LDAP集成方案：
 
 是不是非常的简单！！！
 
-实现技术栈：golang(gin、client-go、viper、ldap) + [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) / [Kubaord](https://kuboard.cn/install/install-dashboard.html)
+实现技术栈：golang(gin、client-go、viper、ldap) + [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) / [Kuboard](https://kuboard.cn/install/install-dashboard.html)
 # 如何部署
 ## 前提条件
 在使用此工具前，需要有以下一些条件约束：
