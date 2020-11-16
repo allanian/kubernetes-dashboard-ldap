@@ -178,10 +178,10 @@ For more information about rbac, please refer to：[https://www.cnblogs.com/wlbl
 ## LDAP description
 Our `ldap` directory rules are as follows:
 ```
-|--domain
-|----|---company
-|----|----|----subsidiary
-|----|----|-----|----department
+| --domain |
+| -------- |  |company
+| ---- | ---- | ----subsidiary |
+| ---- | ---- | -------------- |  |department
 |----|----|-----|-----|-----user
 ```
 
@@ -269,8 +269,8 @@ Video download address: [https://github.com/icyxp/kubernetes-dashboard-ldap/raw/
 # Donation
 if you are willing to.
 
-|Alipay|Wxpay|Wechat group|
-|:-----:|:-----:|:-----:|
-|![alipay](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/alipay.png)|![weixin](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/wxpay.png)|![weixin group](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/weixin.jpeg)|
+|                                                    Alipay                                                    |                                                    Wxpay                                                    |                                               Wechat group                                                |
+| :----------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| ![alipay](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/alipay.png) | ![weixin](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/wxpay.png) | ![公众号](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/dyh.png) |
 
 
