@@ -11,7 +11,7 @@ Dashboard LDAP integration solutions：
 The above two documents are LDAP scheme, I feel good, for the need of people reference!
 
 # How to design
-> Objective: ** Simple use **!! By accessing the same address, the dashboard of different clusters can be switched using LDAP login and different cluster permissions can be configured separately!
+> Objective: **Simple use**!! By accessing the same address, the dashboard of different clusters can be switched using LDAP login and different cluster permissions can be configured separately!
 
 With the above goals, how to achieve them?
 
@@ -179,10 +179,10 @@ For more information about rbac, please refer to：[https://www.cnblogs.com/wlbl
 Our `ldap` directory rules are as follows:
 ```
 | --domain |
-| -------- |  |company
-| ---- | ---- | ----subsidiary |
-| ---- | ---- | -------------- |  |department
-|----|----|-----|-----|-----user
+| -------- || company |
+| ------- |  |  || subsidiary |
+| ---------- |  |  || department |
+| ---------- |  |  |  |  |user
 ```
 
 The corresponding `Distinguished Name` is shown below：

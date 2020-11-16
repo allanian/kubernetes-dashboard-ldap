@@ -175,10 +175,10 @@ subjects: #主体
 ## ldap说明
 我司`ldap`目录规则如下：
 ```
-|--域
-|--|---公司
-|--|----|----分公司
-|--|----|-----|----部门
+| --域 |
+| ---- |  |公司
+| --  | ---- | ----分公司 |
+| --- | ---- | ---------- |  |部门
 |--|----|-----|-----|-----用户
 ```
 
@@ -266,7 +266,7 @@ http://{nodeip}:31000
 # 捐助
 如果你愿意.
 
-|支付宝|微信|群二维码|
-|:-----:|:-----:|:-----:|
-|![alipay](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/alipay.png)|![weixin](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/wxpay.png)|![公众号](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/dyh.png)|
+|                                                    支付宝                                                    |                                                    微信                                                     |                                                 群二维码                                                  |
+| :----------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| ![alipay](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/alipay.png) | ![weixin](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/wxpay.png) | ![公众号](https://raw.githubusercontent.com/icyxp/kubernetes-dashboard-ldap/master/assets/donate/dyh.png) |
 
