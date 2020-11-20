@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
   config: |
+    debug: true
     ldap:
       addr: ldap://192.168.3.81:389
       adminUser: xxxxx
