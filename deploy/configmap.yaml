@@ -36,6 +36,7 @@ data:
         port: 443
         dashboard: https://dashboard-us-release.jiunile.com
         desc: US Release Cluster
+        default: true
       euprod:
         apiServer: apiserver-eu-prod.jiunile.com
         port: 443
