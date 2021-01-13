@@ -1,3 +1,10 @@
+## 2.2.0
+可选择性使用代理访问，相关配置查看 `configmap.yaml` 中的 `Proxy` 字段
+
+---
+
+Optional use proxy visit，you can refer to `configmap.yaml` `proxy` field
+
 ## 2.1.0
 增加审计日志
 

@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   config: |
     debug: true
+    proxy: http://xxxxxx:8118
     ldap:
       addr: ldap://192.168.3.81:389
       adminUser: xxxxx
@@ -37,17 +38,20 @@ data:
         dashboard: https://dashboard-us-release.jiunile.com
         desc: US Release Cluster
         default: true
+        proxy: true
       euprod:
         apiServer: apiserver-eu-prod.jiunile.com
         port: 443
         dashboard: https://dashboard-eu-prod.jiunile.com
         desc: EU Prod Cluster
+        proxy: true
       dataprod: 
         apiServer: apiserver-data-prod.jiunile.com
         port: 443
         dashboard: http://kuboard-data-prod.jiunile.com
         desc: DATA Prod Cluster
         type: kuboard
+        proxy: true
 kind: ConfigMap
 metadata:
   name: mutiboard-ldap
